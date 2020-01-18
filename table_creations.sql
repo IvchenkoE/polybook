@@ -13,7 +13,7 @@ CREATE TABLE `database`.`users` (
 --create teble 'catalog'
 CREATE TABLE `database`.`catalog` (
   `id` INT NOT NULL,
-  `roomType` INT NOT NULL,
+  `roomTypeId` INT NOT NULL,
   `capacity` INT NOT NULL,
   `isTechEquip` TINYINT NOT NULL,
   `techEquip` VARCHAR(200) NULL,
@@ -23,7 +23,7 @@ CREATE TABLE `database`.`catalog` (
 CREATE TABLE `database`.`booking` (
   `id` INT NOT NULL,
   `userId` INT NOT NULL,
-  `toomId` INT NOT NULL,
+  `roomId` INT NOT NULL,
   `date` DATE NOT NULL,
   `startTime` DATETIME NOT NULL,
   `endTime` DATETIME NOT NULL,
