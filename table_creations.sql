@@ -43,16 +43,16 @@ CREATE TABLE `database`.`equipment` (
   `name` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`));
 
---create table 'equip_for_room'
-CREATE TABLE `database`.`equip_for_room` (
+--create table 'equipforroom'
+CREATE TABLE `database`.`equipforroom` (
   `id` INT NOT NULL,
   `equipId` INT NOT NULL,
   `roomId` INT NOT NULL,
   PRIMARY KEY (`id`));
 
 
---create table 'equip_for_booking'
-CREATE TABLE `database`.`equip_for_book` (
+--create table 'equipforbooking'
+CREATE TABLE `database`.`equipforbooking` (
   `id` INT NOT NULL,
   `equipId` INT NOT NULL,
   `bookId` INT NOT NULL,
