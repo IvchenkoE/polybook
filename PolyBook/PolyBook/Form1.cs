@@ -43,5 +43,15 @@ namespace PolyBook
                 MessageBox.Show("Connection failed!!", "Connection", MessageBoxButtons.OK);
             }
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
