@@ -3,7 +3,7 @@ drop procedure if exists signUp;
 create procedure signUp (in email_ varchar(45), in password_ varchar(45), 
                          in firstName_ varchar(45), in lastName_ varchar(45),
                          in fatherName_ varchar(45), in phoneNumber_ varchar(45),
-                         in isAdmin_ boolean, out id_ int)
+                         out id_ int)
 language sql
 deterministic
 sql security definer
@@ -15,6 +15,6 @@ begin
 		-- user with this email already exists
 		set id_ = 0;
 	else
-		insert into users values(id_, email_, password_, firstName_, lastName_, fatherName_, phoneNumber_, isAdmin_);
+		insert into users values(id_, email_, password_, firstName_, lastName_, fatherName_, phoneNumber_, false);
 	end if;
 end //
