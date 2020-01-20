@@ -1,8 +1,6 @@
 DELIMITER //
 drop procedure if exists signUp;
 create procedure signUp (in email_ varchar(45), in password_ varchar(45), 
-                         in firstName_ varchar(45), in lastName_ varchar(45),
-                         in fatherName_ varchar(45), in phoneNumber_ varchar(45),
                          out id_ int)
 language sql
 deterministic
@@ -15,6 +13,6 @@ begin
 		-- user with this email already exists
 		set id_ = 0;
 	else
-		insert into users values(id_, email_, password_, firstName_, lastName_, fatherName_, phoneNumber_, false);
+		insert into users values(id_, email_, password_, null, null, null, null, false);
 	end if;
 end //
