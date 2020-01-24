@@ -3,10 +3,10 @@ CREATE TABLE `database`.`users` (
   `id` INT NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `firstName` VARCHAR(45) NOT NULL,
-  `lastName` VARCHAR(45) NOT NULL,
+  `firstName` VARCHAR(45) NULL,
+  `lastName` VARCHAR(45) NULL,
   `fatherName` VARCHAR(45) NULL,
-  `phoneNumber` VARCHAR(45) NOT NULL,
+  `phoneNumber` VARCHAR(45) NULL,
   `isAdmin` TINYINT NOT NULL,
   PRIMARY KEY (`id`));
 
