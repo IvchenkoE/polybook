@@ -1,7 +1,6 @@
 DELIMITER //
 drop procedure if exists signUp;
-create procedure signUp (in email_ varchar(45), in password_ varchar(45), 
-                         out id_ int)
+create procedure signUp (in email_ varchar(45), in password_ varchar(45))
 language sql
 deterministic
 sql security definer
