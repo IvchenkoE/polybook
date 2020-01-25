@@ -55,7 +55,7 @@ namespace PolyBook
             {
                 Uid = Convert.ToInt32(cmd.ExecuteScalar().ToString());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Неправильно введен email или пароль", "Ошибка входа", MessageBoxButtons.OK);
                 Uid = -2;
@@ -76,7 +76,6 @@ namespace PolyBook
                 {
                     Form userPage = new Form1(Uid);
                     userPage.Show();
-                    //this.Visible = false;
                 }
             }
 

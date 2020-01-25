@@ -86,9 +86,8 @@ namespace PolyBook
         private void getUserPassword()
         {
             string sql = "SELECT password FROM users WHERE id = " + Uid;
-            // объект для выполнения SQL-запроса
+            
             MySqlCommand command = new MySqlCommand(sql, cn);
-            // выполняем запрос и получаем ответ
             textBoxPassword.Text = command.ExecuteScalar().ToString();
             oldPassword = textBoxPassword.Text;
         }

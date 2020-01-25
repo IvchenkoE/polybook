@@ -194,6 +194,7 @@
             this.Font = new System.Drawing.Font("Calibri Light", 10F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdateUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Редактирование данных пользователя";
             this.Load += new System.EventHandler(this.UpdateUser_Load);
             this.ResumeLayout(false);
