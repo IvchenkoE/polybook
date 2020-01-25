@@ -34,6 +34,26 @@ namespace PolyBook
 
         private void buttonSignUp_Click(object sender, EventArgs e)
         {
+            string checkEmail = textBoxEmail.Text;
+            string checkPassword = textBoxPassword.Text;
+            if ((checkEmail.IndexOf("@") != checkEmail.LastIndexOf("@")) 
+                || (checkEmail.IndexOf("@") == 0))
+            {
+                MessageBox.Show("Ваш почтовый адрес имеет неверный формат.", "Ошибка регистрации", MessageBoxButtons.OK);
+                return;
+            }
+            if ((checkPassword.IndexOf(" ") >= 0) || (checkPassword == ""))
+            {
+                MessageBox.Show("Ваш пароль имеет неверный формат.", "Ошибка регистрации", MessageBoxButtons.OK);
+                return;
+            }
+            if (!(checkEmail.EndsWith("@edu.spbstu.ru") || checkEmail.EndsWith("@ics2.ecd.spbstu.ru") || checkEmail.EndsWith("@dcn.icc.spbstu.ru")))
+            {
+                MessageBox.Show("Домен вашего почтового адреса не является доменом Университета. Для регистрации укашите почтовый адрес Университета.", 
+                    "Ошибка регистрации", MessageBoxButtons.OK);
+                return;
+            }
+
             MySqlCommand cmd = new MySqlCommand("call signUp(@email, @password);", cn);
 
             MySqlParameter email = new MySqlParameter();

@@ -191,148 +191,162 @@ namespace PolyBook
         {
             try
             {
-                MySqlCommand cmd = new MySqlCommand("call addBook(@Uid, @RoomId, @date, @sttime, @endtime, @purpose, @isEquip);", cn);
-
-                MySqlParameter usid = new MySqlParameter();
-                usid = cmd.Parameters.Add("@Uid", MySqlDbType.Int32);
-                usid.Direction = ParameterDirection.Input;
-                usid.Value = Uid;
-
-                MySqlParameter rid = new MySqlParameter();
-                rid = cmd.Parameters.Add("@RoomId", MySqlDbType.Int32);
-                rid.Direction = ParameterDirection.Input;
-                rid.Value = textBoxRoomIdBooking.Text;
-
-                MySqlParameter date = new MySqlParameter();
-                date = cmd.Parameters.Add("@Date", MySqlDbType.Date);
-                date.Direction = ParameterDirection.Input;
-                date.Value = monthCalendarBooking.SelectionRange.Start;
-
-                MySqlParameter sttime = new MySqlParameter();
-                sttime = cmd.Parameters.Add("@sttime", MySqlDbType.Time);
-                sttime.Direction = ParameterDirection.Input;
-                string time = textBoxTimeStartBooking.Text + ":00";
-
-
-                sttime.Value = TimeSpan.Parse(time);
-
-                MySqlParameter endtime = new MySqlParameter();
-                endtime = cmd.Parameters.Add("@endtime", MySqlDbType.Time);
-                endtime.Direction = ParameterDirection.Input;
-                time = textBoxTimeEndBooking.Text + ":00";
-                endtime.Value = TimeSpan.Parse(time);
-
-                MySqlParameter purpose = new MySqlParameter();
-                purpose = cmd.Parameters.Add("@purpose", MySqlDbType.VarChar);
-                purpose.Direction = ParameterDirection.Input;
-                purpose.Value = richTextBoxBooking.Text;
-
-                MySqlParameter isEquip = new MySqlParameter();
-                isEquip = cmd.Parameters.Add("@isEquip", MySqlDbType.Int16);
-                isEquip.Direction = ParameterDirection.Input;
-
-                if (checkedListBoxBooking.CheckedItems.Count > 0)
+                if (TimeSpan.Parse(textBoxTimeStartBooking.Text + ":00") < TimeSpan.Parse(textBoxTimeEndBooking.Text + ":00"))
                 {
-                    isEquip.Value = 1;
+                    try
+                    {
+                        MySqlCommand cmd = new MySqlCommand("call addBook(@Uid, @RoomId, @date, @sttime, @endtime, @purpose, @isEquip);", cn);
+
+                        MySqlParameter usid = new MySqlParameter();
+                        usid = cmd.Parameters.Add("@Uid", MySqlDbType.Int32);
+                        usid.Direction = ParameterDirection.Input;
+                        usid.Value = Uid;
+
+                        MySqlParameter rid = new MySqlParameter();
+                        rid = cmd.Parameters.Add("@RoomId", MySqlDbType.Int32);
+                        rid.Direction = ParameterDirection.Input;
+                        rid.Value = textBoxRoomIdBooking.Text;
+
+                        MySqlParameter date = new MySqlParameter();
+                        date = cmd.Parameters.Add("@Date", MySqlDbType.Date);
+                        date.Direction = ParameterDirection.Input;
+                        date.Value = monthCalendarBooking.SelectionRange.Start;
+
+                        MySqlParameter sttime = new MySqlParameter();
+                        sttime = cmd.Parameters.Add("@sttime", MySqlDbType.Time);
+                        sttime.Direction = ParameterDirection.Input;
+                        string time = textBoxTimeStartBooking.Text + ":00";
+
+
+                        sttime.Value = TimeSpan.Parse(time);
+
+                        MySqlParameter endtime = new MySqlParameter();
+                        endtime = cmd.Parameters.Add("@endtime", MySqlDbType.Time);
+                        endtime.Direction = ParameterDirection.Input;
+                        time = textBoxTimeEndBooking.Text + ":00";
+                        endtime.Value = TimeSpan.Parse(time);
+
+                        MySqlParameter purpose = new MySqlParameter();
+                        purpose = cmd.Parameters.Add("@purpose", MySqlDbType.VarChar);
+                        purpose.Direction = ParameterDirection.Input;
+                        purpose.Value = richTextBoxBooking.Text;
+
+                        MySqlParameter isEquip = new MySqlParameter();
+                        isEquip = cmd.Parameters.Add("@isEquip", MySqlDbType.Int16);
+                        isEquip.Direction = ParameterDirection.Input;
+
+                        if (checkedListBoxBooking.CheckedItems.Count > 0)
+                        {
+                            isEquip.Value = 1;
+                        }
+                        else
+                        {
+                            isEquip.Value = 0;
+                        }
+
+                        int rows = cmd.ExecuteNonQuery();
+                        if (rows == 0)
+                        {
+                            MessageBox.Show("Данные введены неверно", "Ошибка в данных", MessageBoxButtons.OK);
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        MessageBox.Show("Данные введены неверно", "Ошибка в данных", MessageBoxButtons.OK);
+                    }
+                    
+
+
+                    string sql = "select max(id) from booking";
+
+                    MySqlCommand command = new MySqlCommand(sql, cn);
+                    int bookId = Convert.ToInt32(command.ExecuteScalar().ToString());
+
+                    if (checkedListBoxBooking.CheckedItems.Count > 0)
+                    {
+                        for (int i = 0; i < checkedListBoxBooking.CheckedItems.Count; i++)
+                        {
+                            if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[0])
+                            {
+                                MySqlCommand cmd1 = new MySqlCommand("call addEquipBook(@idEqup, @idBook);", cn);
+
+                                MySqlParameter id = new MySqlParameter();
+                                id = cmd1.Parameters.Add("@idBook", MySqlDbType.Int32);
+                                id.Direction = ParameterDirection.Input;
+                                id.Value = bookId;
+
+                                MySqlParameter idEq = new MySqlParameter();
+                                idEq = cmd1.Parameters.Add("@idEqup", MySqlDbType.Int32);
+                                idEq.Direction = ParameterDirection.Input;
+                                idEq.Value = 1;
+
+                                cmd1.ExecuteNonQuery();
+                            }
+                            else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[1])
+                            {
+                                MySqlCommand cmd2 = new MySqlCommand("call addEquipBook(@idEqup, @idBook);", cn);
+
+                                MySqlParameter id = new MySqlParameter();
+                                id = cmd2.Parameters.Add("@idBook", MySqlDbType.Int32);
+                                id.Direction = ParameterDirection.Input;
+                                id.Value = bookId;
+
+                                MySqlParameter idEq = new MySqlParameter();
+                                idEq = cmd2.Parameters.Add("@idEqup", MySqlDbType.Int32);
+                                idEq.Direction = ParameterDirection.Input;
+                                idEq.Value = 2;
+
+                                cmd2.ExecuteNonQuery();
+                            }
+                            else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[2])
+                            {
+                                MySqlCommand cmd3 = new MySqlCommand("call addEquipBook(@idEqup, @idBook);", cn);
+
+                                MySqlParameter id = new MySqlParameter();
+                                id = cmd3.Parameters.Add("@idBook", MySqlDbType.Int32);
+                                id.Direction = ParameterDirection.Input;
+                                id.Value = bookId;
+
+                                MySqlParameter idEq = new MySqlParameter();
+                                idEq = cmd3.Parameters.Add("@idEqup", MySqlDbType.Int32);
+                                idEq.Direction = ParameterDirection.Input;
+                                idEq.Value = 3;
+
+                                cmd3.ExecuteNonQuery();
+                            }
+                            else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[3])
+                            {
+                                MySqlCommand cmd4 = new MySqlCommand("call addEquipBook(@idEqup, @idBook);", cn);
+
+                                MySqlParameter id = new MySqlParameter();
+                                id = cmd4.Parameters.Add("@idBook", MySqlDbType.Int32);
+                                id.Direction = ParameterDirection.Input;
+                                id.Value = bookId;
+
+                                MySqlParameter idEq = new MySqlParameter();
+                                idEq = cmd4.Parameters.Add("@idEqup", MySqlDbType.Int32);
+                                idEq.Direction = ParameterDirection.Input;
+                                idEq.Value = 4;
+
+                                cmd4.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                    showUserBooks();
+                    if (comboBox1.Items.Count > 0)
+                    {
+                        comboBox1.SelectedItem = comboBox1.Items[0];
+                        comboBox1.Enabled = true;
+                    }
                 }
                 else
                 {
-                    isEquip.Value = 0;
+                    MessageBox.Show("Время окончания стоит раньше времени начала бронирования", "Ошибка в данных", MessageBoxButtons.OK);
                 }
-
-                cmd.ExecuteNonQuery();
-
-            }
-            catch (MySqlException)
-            {
-                MessageBox.Show("Данные введены неверно", "Ошибка в данных", MessageBoxButtons.OK);
             }
             catch (FormatException)
             {
                 MessageBox.Show("Время введено неверно", "Ошибка в данных", MessageBoxButtons.OK);
-            }
-
-
-            string sql = "select max(id) from booking";
-
-            MySqlCommand command = new MySqlCommand(sql, cn);
-            int bookId = Convert.ToInt32(command.ExecuteScalar().ToString());
-
-            if (checkedListBoxBooking.CheckedItems.Count > 0)
-            {
-                for (int i = 0; i < checkedListBoxBooking.CheckedItems.Count; i++)
-                {
-                    if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[0])
-                    {
-                        MySqlCommand cmd1 = new MySqlCommand("call addEquipBook(@idEqup, @idBook);", cn);
-
-                        MySqlParameter id = new MySqlParameter();
-                        id = cmd1.Parameters.Add("@idBook", MySqlDbType.Int32);
-                        id.Direction = ParameterDirection.Input;
-                        id.Value = bookId;
-
-                        MySqlParameter idEq = new MySqlParameter();
-                        idEq = cmd1.Parameters.Add("@idEqup", MySqlDbType.Int32);
-                        idEq.Direction = ParameterDirection.Input;
-                        idEq.Value = 1;
-
-                        cmd1.ExecuteNonQuery();
-                    }
-                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[1])
-                    {
-                        MySqlCommand cmd2 = new MySqlCommand("call addEquipBook(@idEqup, @idBook);", cn);
-
-                        MySqlParameter id = new MySqlParameter();
-                        id = cmd2.Parameters.Add("@idBook", MySqlDbType.Int32);
-                        id.Direction = ParameterDirection.Input;
-                        id.Value = bookId;
-
-                        MySqlParameter idEq = new MySqlParameter();
-                        idEq = cmd2.Parameters.Add("@idEqup", MySqlDbType.Int32);
-                        idEq.Direction = ParameterDirection.Input;
-                        idEq.Value = 2;
-
-                        cmd2.ExecuteNonQuery();
-                    }
-                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[2])
-                    {
-                        MySqlCommand cmd3 = new MySqlCommand("call addEquipBook(@idEqup, @idBook);", cn);
-
-                        MySqlParameter id = new MySqlParameter();
-                        id = cmd3.Parameters.Add("@idBook", MySqlDbType.Int32);
-                        id.Direction = ParameterDirection.Input;
-                        id.Value = bookId;
-
-                        MySqlParameter idEq = new MySqlParameter();
-                        idEq = cmd3.Parameters.Add("@idEqup", MySqlDbType.Int32);
-                        idEq.Direction = ParameterDirection.Input;
-                        idEq.Value = 3;
-
-                        cmd3.ExecuteNonQuery();
-                    }
-                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[3])
-                    {
-                        MySqlCommand cmd4 = new MySqlCommand("call addEquipBook(@idEqup, @idBook);", cn);
-
-                        MySqlParameter id = new MySqlParameter();
-                        id = cmd4.Parameters.Add("@idBook", MySqlDbType.Int32);
-                        id.Direction = ParameterDirection.Input;
-                        id.Value = bookId;
-
-                        MySqlParameter idEq = new MySqlParameter();
-                        idEq = cmd4.Parameters.Add("@idEqup", MySqlDbType.Int32);
-                        idEq.Direction = ParameterDirection.Input;
-                        idEq.Value = 4;
-
-                        cmd4.ExecuteNonQuery();
-                    }
-                }
-            }
-            showUserBooks();
-            if (comboBox1.Items.Count > 0)
-            {
-                comboBox1.SelectedItem = comboBox1.Items[0];
-                comboBox1.Enabled = true;
             }
         }
     }

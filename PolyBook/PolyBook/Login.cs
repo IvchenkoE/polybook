@@ -70,7 +70,8 @@ namespace PolyBook
                 string isAdmin = cmd.ExecuteScalar().ToString();
                 if (isAdmin == "true")
                 {
-                    //
+                    Form adminPage = new AdminPage(Uid);
+                    adminPage.Show();
                 }
                 else
                 {
