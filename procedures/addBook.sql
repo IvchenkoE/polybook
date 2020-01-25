@@ -1,7 +1,7 @@
 delimiter //
 drop procedure if exists addBook;
-create procedure addBook(in userId_ int, in roomId_ int, in date_ DATE, in startTime_ datetime, 
-						in endTime_ datetime, in purpose_ varchar(200), in isTechEquip_ tinyint)
+create procedure addBook(in userId_ int, in roomId_ int, in date_ DATE, in startTime_ time, 
+						in endTime_ time, in purpose_ varchar(200), in isTechEquip_ tinyint)
 comment "adding a new book to the booking"
 begin
 declare maxId int default 0;
