@@ -23,6 +23,12 @@ namespace PolyBook
         private bool isComboboxSelected;
         private String[] equipment;
 
+        private bool isTechMicro;
+        private bool isTechPK;
+        private bool isTechProect;
+        private bool isTechInter;
+        private bool isAllTechInRoom;
+
         public Form1(int id)
         {
             InitializeComponent();
@@ -37,6 +43,11 @@ namespace PolyBook
             cn.ConnectionString = strConn;
             isComboboxSelected = false;
             equipment = new String[4];
+            isTechMicro = false;
+            isTechPK = false;
+            isTechProect = false;
+            isTechInter = false;
+            isAllTechInRoom = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -212,6 +223,161 @@ namespace PolyBook
 
         private void buttonBook_Click(object sender, EventArgs e)
         {
+            if (checkedListBoxBooking.CheckedItems.Count > 0)
+            {
+                for (int i = 0; i < checkedListBoxBooking.CheckedItems.Count; i++)
+                {
+                    if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[0])
+                    {
+                        MySqlCommand cmd1 = new MySqlCommand("call getequipRoomId(@idEqup, @idRoom);", cn);
+
+                        MySqlParameter idEqup = new MySqlParameter();
+                        idEqup = cmd1.Parameters.Add("@idEqup", MySqlDbType.Int32);
+                        idEqup.Direction = ParameterDirection.Input;
+                        idEqup.Value = 1;
+
+                        MySqlParameter idRoom = new MySqlParameter();
+                        idRoom = cmd1.Parameters.Add("@idRoom", MySqlDbType.Int32);
+                        idRoom.Direction = ParameterDirection.Input;
+                        idRoom.Value = textBoxRoomIdBooking.Text;
+                        int id = -1;
+                        try
+                        {
+                            id = Convert.ToInt32(cmd1.ExecuteScalar());
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                        if (id > 0)
+                        {
+                            isTechMicro = true;
+                        }
+                    }
+                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[1])
+                    {
+                        MySqlCommand cmd1 = new MySqlCommand("call getequipRoomId(@idEqup, @idRoom);", cn);
+
+                        MySqlParameter idEqup = new MySqlParameter();
+                        idEqup = cmd1.Parameters.Add("@idEqup", MySqlDbType.Int32);
+                        idEqup.Direction = ParameterDirection.Input;
+                        idEqup.Value = 2;
+
+                        MySqlParameter idRoom = new MySqlParameter();
+                        idRoom = cmd1.Parameters.Add("@idRoom", MySqlDbType.Int32);
+                        idRoom.Direction = ParameterDirection.Input;
+                        idRoom.Value = textBoxRoomIdBooking.Text;
+                        int id = -1;
+                        try
+                        {
+                            id = Convert.ToInt32(cmd1.ExecuteScalar());
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                        if (id > 0)
+                        {
+                            isTechPK = true;
+                        }
+                    }
+                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[2])
+                    {
+                        MySqlCommand cmd1 = new MySqlCommand("call getequipRoomId(@idEqup, @idRoom);", cn);
+
+                        MySqlParameter idEqup = new MySqlParameter();
+                        idEqup = cmd1.Parameters.Add("@idEqup", MySqlDbType.Int32);
+                        idEqup.Direction = ParameterDirection.Input;
+                        idEqup.Value = 3;
+
+                        MySqlParameter idRoom = new MySqlParameter();
+                        idRoom = cmd1.Parameters.Add("@idRoom", MySqlDbType.Int32);
+                        idRoom.Direction = ParameterDirection.Input;
+                        idRoom.Value = textBoxRoomIdBooking.Text;
+                        int id = -1;
+                        try
+                        {
+                            id = Convert.ToInt32(cmd1.ExecuteScalar());
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                        if (id > 0)
+                        {
+                            isTechProect = true;
+                        }
+                    }
+                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[3])
+                    {
+                        MySqlCommand cmd1 = new MySqlCommand("call getequipRoomId(@idEqup, @idRoom);", cn);
+
+                        MySqlParameter idEqup = new MySqlParameter();
+                        idEqup = cmd1.Parameters.Add("@idEqup", MySqlDbType.Int32);
+                        idEqup.Direction = ParameterDirection.Input;
+                        idEqup.Value = 4;
+
+                        MySqlParameter idRoom = new MySqlParameter();
+                        idRoom = cmd1.Parameters.Add("@idRoom", MySqlDbType.Int32);
+                        idRoom.Direction = ParameterDirection.Input;
+                        idRoom.Value = textBoxRoomIdBooking.Text;
+                        int id = -1;
+                        try
+                        {
+                            id = Convert.ToInt32(cmd1.ExecuteScalar());
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                        if (id > 0)
+                        {
+                            isTechInter = true;
+                        }
+                    }
+                }
+            }
+
+            if (checkedListBoxBooking.CheckedItems.Count > 0)
+            {
+                for (int i = 0; i < checkedListBoxBooking.CheckedItems.Count; i++)
+                {
+                    if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[0])
+                    {
+                        if (!(isTechMicro))
+                        {
+                            MessageBox.Show("В данной аудитории нет Микрофона", "Ошибка в выборе технического оборудования", MessageBoxButtons.OK);
+                            return;
+                        }
+                            
+                    }
+                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[1])
+                    {
+                        if (!(isTechPK))
+                        {
+                            MessageBox.Show("В данной аудитории нет Персонального компьютера", "Ошибка в выборе технического оборудования", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[2])
+                    {
+                        if (!(isTechProect))
+                        {
+                            MessageBox.Show("В данной аудитории нет Проектора", "Ошибка в выборе технического оборудования", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    else if (checkedListBoxBooking.CheckedItems[i].ToString() == equipment[3])
+                    {
+                        if (!(isTechInter))
+                        {
+                            MessageBox.Show("В данной аудитории нет Интерактивной доски", "Ошибка в выборе технического оборудования", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                }
+            }
+
             try
             {
                 if (TimeSpan.Parse(textBoxTimeStartBooking.Text + ":00") < TimeSpan.Parse(textBoxTimeEndBooking.Text + ":00"))
@@ -277,8 +443,6 @@ namespace PolyBook
                     {
                         MessageBox.Show("Данные введены неверно", "Ошибка в данных", MessageBoxButtons.OK);
                     }
-                    
-
 
                     string sql = "select max(id) from booking";
 
@@ -360,6 +524,13 @@ namespace PolyBook
                     {
                         comboBox1.SelectedItem = comboBox1.Items[0];
                         comboBox1.Enabled = true;
+                    }
+                    textBoxRoomIdBooking.Clear();
+                    textBoxTimeEndBooking.Clear();
+                    textBoxTimeStartBooking.Clear();
+                    for (int i = 0; i < checkedListBoxBooking.Items.Count; i++)
+                    {
+                        checkedListBoxBooking.SetItemCheckState(i, CheckState.Unchecked);
                     }
                 }
                 else
@@ -490,9 +661,9 @@ namespace PolyBook
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception Ex)
             {
-                MessageBox.Show("Данные введены неверно", "Ошибка в данных", MessageBoxButtons.OK);
+                MessageBox.Show(Ex.ToString(), "Ошибка в данных", MessageBoxButtons.OK);
 
             }
         }

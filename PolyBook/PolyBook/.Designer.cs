@@ -32,6 +32,8 @@
             this.cn = new MySql.Data.MySqlClient.MySqlConnection();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
+            this.richTextBoxBooking = new System.Windows.Forms.RichTextBox();
             this.buttonBook = new System.Windows.Forms.Button();
             this.textBoxRoomIdBooking = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -45,6 +47,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.checkedListBoxBooking = new System.Windows.Forms.CheckedListBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBoxRoomNumberCatalog = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.buttonBookingCatalog = new System.Windows.Forms.Button();
@@ -85,10 +89,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.dataSetCatalog = new System.Data.DataSet();
             this.dataSetBooking = new System.Data.DataSet();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.richTextBoxBooking = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -138,6 +138,24 @@
             this.tabPage2.Size = new System.Drawing.Size(933, 504);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Бронирование";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Calibri Light", 10F);
+            this.label23.Location = new System.Drawing.Point(167, 296);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(175, 17);
+            this.label23.TabIndex = 29;
+            this.label23.Text = "Укажите цель бронирования:";
+            // 
+            // richTextBoxBooking
+            // 
+            this.richTextBoxBooking.Location = new System.Drawing.Point(170, 316);
+            this.richTextBoxBooking.Name = "richTextBoxBooking";
+            this.richTextBoxBooking.Size = new System.Drawing.Size(240, 137);
+            this.richTextBoxBooking.TabIndex = 28;
+            this.richTextBoxBooking.Text = "";
             // 
             // buttonBook
             // 
@@ -281,6 +299,24 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Каталог";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Calibri Light", 10F);
+            this.label22.Location = new System.Drawing.Point(31, 341);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(175, 17);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "Укажите цель бронирования:";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(34, 361);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(240, 69);
+            this.richTextBox1.TabIndex = 21;
+            this.richTextBox1.Text = "";
+            // 
             // textBoxRoomNumberCatalog
             // 
             this.textBoxRoomNumberCatalog.Location = new System.Drawing.Point(331, 458);
@@ -307,6 +343,7 @@
             this.buttonBookingCatalog.TabIndex = 18;
             this.buttonBookingCatalog.Text = "Забронировать";
             this.buttonBookingCatalog.UseVisualStyleBackColor = true;
+            this.buttonBookingCatalog.Click += new System.EventHandler(this.buttonBookingCatalog_Click);
             // 
             // label9
             // 
@@ -326,6 +363,7 @@
             this.buttonFindCatalog.TabIndex = 15;
             this.buttonFindCatalog.Text = "Поиск";
             this.buttonFindCatalog.UseVisualStyleBackColor = true;
+            this.buttonFindCatalog.Click += new System.EventHandler(this.buttonFindCatalog_Click);
             // 
             // label8
             // 
@@ -672,42 +710,6 @@
             // dataSetBooking
             // 
             this.dataSetBooking.DataSetName = "NewDataSet";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(34, 361);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(240, 69);
-            this.richTextBox1.TabIndex = 21;
-            this.richTextBox1.Text = "";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Calibri Light", 10F);
-            this.label22.Location = new System.Drawing.Point(31, 341);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(175, 17);
-            this.label22.TabIndex = 22;
-            this.label22.Text = "Укажите цель бронирования:";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Calibri Light", 10F);
-            this.label23.Location = new System.Drawing.Point(167, 296);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(175, 17);
-            this.label23.TabIndex = 29;
-            this.label23.Text = "Укажите цель бронирования:";
-            // 
-            // richTextBoxBooking
-            // 
-            this.richTextBoxBooking.Location = new System.Drawing.Point(170, 316);
-            this.richTextBoxBooking.Name = "richTextBoxBooking";
-            this.richTextBoxBooking.Size = new System.Drawing.Size(240, 137);
-            this.richTextBoxBooking.TabIndex = 28;
-            this.richTextBoxBooking.Text = "";
             // 
             // Form1
             // 
