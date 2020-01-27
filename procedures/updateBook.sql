@@ -7,9 +7,9 @@ begin
 declare c int default 0;
 set c = (select count(id) from booking 
 			where (roomId = roomId_) and (date = date_) and (startTime_ < endTime_) and
-				((startTime_ <= endTime and startTime_ > startTime) or 
-				(endTime_ < endTime and endTime_ >= startTime) or
-                (startTime_ <= startTime and endTime_ >= endTime)));
+				((startTime_ < endTime and startTime_ > startTime) or 
+				(endTime_ < endTime and endTime_ > startTime) or
+                (startTime_ < startTime and endTime_ > endTime)));
 if (c = 0) then update `database`.`booking` set userId = userId_, roomId = roomId_, 
 			date = date_, startTime = startTime_, endTime = endTime_, 
             purpose = purpose_, isTechEquip = isTechEquip_ where id = id_;
