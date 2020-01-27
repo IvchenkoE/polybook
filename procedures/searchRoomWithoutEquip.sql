@@ -4,7 +4,7 @@ create procedure searchRoomWithoutEquip(in date_ date, in startTime_ time, in en
 comment ""
 begin
 	if roomType_ = 'Все' then
-		select catalog.id as "Номер аудитории", catalog.capacity as "Вместительность", roomType.type as "Тип"
+		select catalog.id as "Номер аудитории", catalog.capacity as "Вместимость", roomType.type as "Тип"
 		from catalog
 		inner join roomType 
 		on catalog.roomTypeId = roomType.id -- and roomType.type = roomType_
@@ -14,7 +14,7 @@ begin
 										or (booking.startTime < endTime_ and booking.endTime >= endTime_)
 										or (booking.startTime >= startTime_ and booking.endTime <= endTime_)))));
 	else
-		select catalog.id as "Номер аудитории", catalog.capacity as "Вместительность", roomType.type as "Тип" 
+		select catalog.id as "Номер аудитории", catalog.capacity as "Вместимость", roomType.type as "Тип" 
 		from catalog
 		inner join roomType 
 		on catalog.roomTypeId = roomType.id and roomType.type = roomType_

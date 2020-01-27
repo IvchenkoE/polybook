@@ -21,10 +21,10 @@ begin
 	if isInterBoard_ = 1 then
 		select id into interBoardId from equipment where name = 'Интерактивная доска';
 	end if;
-    create index id on catalog(id);
-    create index roomTypeId on catalog(roomTypeId);
+    -- create index id on catalog(id);
+    -- searchRoomWithoutEquipcreate index roomTypeId on catalog(roomTypeId);
     if roomType_ = 'Все' then
-		select distinct catalog.id as "Номер аудитории", catalog.capacity as "Вместительность", roomType.type as "Тип"
+		select distinct catalog.id as "Номер аудитории", catalog.capacity as "Вместимость", roomType.type as "Тип"
 		from catalog
         inner join equipforroom
 		on catalog.id = equipforroom.roomId
@@ -58,7 +58,7 @@ begin
                                 join roomType on catalog.roomTypeId = roomType.id
 									where (isInterBoard_ = 0 or equipforroom.equipId = interBoardId));
 	else
-        select distinct catalog.id as "Номер аудитории", catalog.capacity as "Вместительность", roomType.type as "Тип", equipment.name as "Тех.обор"
+        select distinct catalog.id as "Номер аудитории", catalog.capacity as "Вместимость", roomType.type as "Тип", equipment.name as "Тех.обор"
 		from catalog
         inner join equipforroom
 		on catalog.id = equipforroom.roomId
