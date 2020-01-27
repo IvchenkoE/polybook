@@ -343,7 +343,6 @@
             this.buttonBookingCatalog.TabIndex = 18;
             this.buttonBookingCatalog.Text = "Забронировать";
             this.buttonBookingCatalog.UseVisualStyleBackColor = true;
-            this.buttonBookingCatalog.Click += new System.EventHandler(this.buttonBookingCatalog_Click);
             // 
             // label9
             // 
