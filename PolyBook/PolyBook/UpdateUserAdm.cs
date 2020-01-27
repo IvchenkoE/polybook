@@ -13,18 +13,19 @@ namespace PolyBook
 {
     public partial class UpdateUserAdm : Form
     {
-        private int Uid;
         private String strConn;
         private string server;
         private string database;
         private string uid;
         private string password;
-        private string oldPassword;
+        private int adminId;
+        private int userId;
 
-        public UpdateUserAdm(int id)
+        public UpdateUserAdm(int Uid, int id)
         {
             InitializeComponent();
-            Uid = id;
+            adminId = Uid;
+            userId = id;
 
             server = "localhost";
             database = "database";
@@ -46,6 +47,7 @@ namespace PolyBook
                 MessageBox.Show("Connection failed!!", "Connection", MessageBoxButtons.OK);
             }
             getUserData();
+            
         }
 
         private void getUserData()
@@ -55,7 +57,7 @@ namespace PolyBook
             MySqlParameter p = new MySqlParameter();
             p = cmd.Parameters.Add("@str", MySqlDbType.Int32);
             p.Direction = ParameterDirection.Input;
-            p.Value = Uid;
+            p.Value = userId;
             
 
             var result = cmd.ExecuteReader();
@@ -69,6 +71,7 @@ namespace PolyBook
 
                 string s = result["isAdmin"].ToString();
                 int isAdmin = Convert.ToInt32(s);
+                
                
                 if ( isAdmin != 0)
                 {
@@ -77,6 +80,12 @@ namespace PolyBook
                 else 
                 {
                     textBoxPassword.Text = "";
+                }
+                
+                if (adminId != userId)
+                {
+                    textBoxPassword.Visible = false;
+                    label5.Visible = false;
                 }
 
             }
@@ -131,11 +140,10 @@ namespace PolyBook
             pN.Direction = ParameterDirection.Input;
             pN.Value = textBoxCallNum.Text;
 
-            
-
             try
             {
-                MessageBox.Show("Данные обновлены", "Редактирование данных", MessageBoxButtons.OK);
+                var result = cmd.ExecuteNonQuery();
+                // MessageBox.Show("Данные обновлены", "Редактирование данных", MessageBoxButtons.OK);
             }
             catch (Exception Exc)
             {
@@ -171,38 +179,11 @@ namespace PolyBook
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            
-            MySqlCommand cmd = new MySqlCommand("call showUserDataAdm(@str);", cn);
 
-            MySqlParameter p = new MySqlParameter();
-            p = cmd.Parameters.Add("@str", MySqlDbType.Int32);
-            p.Direction = ParameterDirection.Input;
-            p.Value = Uid;
-
-            var result = cmd.ExecuteReader();
-            while (result.Read())
-            {
-                string s = result["isAdmin"].ToString();
-
-                result.Close();
-                int isAdmin = Convert.ToInt32(s);
-
-                if (isAdmin == 1)
-                {
-                   updateUser();
-                   updateUserPassword();
-                }
-                else
-                {
-                    updateUser();
-                    if (textBoxEmail.Text != "")
-                    {
-                       MessageBox.Show("Нельзя менять пароль пользователя. " +
-                           "Остальные данные были обновлены", "Редактирование данных", MessageBoxButtons.OK);
-                    }
-                }
-            }
-            getUserData();
+            updateUser();
+            updateUserPassword();
+            Form admPage = new AdminPage(adminId);
+            admPage.Show();
             this.Close();
         }
     }
