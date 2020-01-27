@@ -31,3 +31,4 @@ C:\Users\mdp19\github\polybook\PolyBook\PolyBook\obj\Debug\PolyBook.exe
 C:\Users\mdp19\github\polybook\PolyBook\PolyBook\obj\Debug\PolyBook.pdb
 C:\Users\mdp19\github\polybook\PolyBook\PolyBook\obj\Debug\PolyBook.csprojAssemblyReference.cache
 C:\Users\mdp19\github\polybook\PolyBook\PolyBook\obj\Debug\PolyBook.UpdateUserAdm.resources
+C:\Users\mdp19\github\polybook\PolyBook\PolyBook\obj\Debug\PolyBook.UpdateBooking.resources
