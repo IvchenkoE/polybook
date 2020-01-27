@@ -68,7 +68,7 @@ namespace PolyBook
                 string str = "SELECT isAdmin from Users where id = " + Uid;
                 cmd = new MySqlCommand(str, cn);
                 string isAdmin = cmd.ExecuteScalar().ToString();
-                if (isAdmin == "true")
+                if (isAdmin == "1")
                 {
                     Form adminPage = new AdminPage(Uid);
                     adminPage.Show();
@@ -101,5 +101,6 @@ namespace PolyBook
             Form signUp = new SignUp();
             signUp.Show();
         }
+        
     }
 }
