@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using MySql.Data.MySqlClient;
 
 namespace PolyBook
@@ -43,7 +44,81 @@ namespace PolyBook
             {
                 MessageBox.Show("Connection failed!!", "Connection", MessageBoxButtons.OK);
             }
+            fillBooking();
+            fillComboBoxes();
             showUsers();
+
+        }
+
+        private void fillBooking()
+        {
+            dataSetBooking.Clear();
+            MySqlCommand cmd = new MySqlCommand("call showAllBooks();", cn);
+
+            MySqlDataAdapter dAdapter = new MySqlDataAdapter();
+            dAdapter.SelectCommand = cmd;
+            dAdapter.Fill(dataSetBooking);
+            dataGridViewBooking.DataSource = dataSetBooking.Tables[0];
+        }
+
+        private void dateTimePickerBooking_ValueChanged(object sender, EventArgs e)
+        {
+            
+            dataSetBooking.Clear();
+            MySqlCommand cmd = new MySqlCommand("call showAllBooksWithDate(@date);", cn);
+
+            MySqlParameter date = new MySqlParameter();
+            date = cmd.Parameters.Add("@date", MySqlDbType.Date);
+            date.Direction = ParameterDirection.Input;
+            date.Value = dateTimePickerBooking.Value;
+
+            MySqlDataAdapter dAdapter = new MySqlDataAdapter();
+            dAdapter.SelectCommand = cmd;
+            dAdapter.Fill(dataSetBooking);
+            dataGridViewBooking.DataSource = dataSetBooking.Tables[0];
+
+            checkBoxAllRooms.CheckState = CheckState.Checked;
+            comboBoxTech.SelectedItem = comboBoxTech.Items[2];
+        }
+
+        private void comboBoxRoom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataSetBooking.Clear();
+            MySqlCommand cmd = new MySqlCommand("call showAllBooksWithRoom(@room);", cn);
+
+            MySqlParameter room = new MySqlParameter();
+            room = cmd.Parameters.Add("@room", MySqlDbType.Int32);
+            room.Direction = ParameterDirection.Input;
+            room.Value = Convert.ToInt32(comboBoxRoom.SelectedItem.ToString());
+
+            MySqlDataAdapter dAdapter = new MySqlDataAdapter();
+            dAdapter.SelectCommand = cmd;
+            dAdapter.Fill(dataSetBooking);
+            dataGridViewBooking.DataSource = dataSetBooking.Tables[0];
+
+            checkBoxAllDate.CheckState = CheckState.Checked;
+            comboBoxTech.SelectedItem = comboBoxTech.Items[2];
+        }
+
+        private void fillComboBoxes()
+        {
+            MySqlCommand cmd = new MySqlCommand("select id from catalog", cn);
+
+            var result = cmd.ExecuteReader();
+            while (result.Read())
+            {
+                comboBoxRoom.Items.Add(result["id"]);
+            }
+            result.Close();
+
+            comboBoxTech.Items.Add("С тех. оборудованием");
+            comboBoxTech.Items.Add("Без тех. оборудования");
+            comboBoxTech.Items.Add("Любое");
+        }
+
+        private void buttonUpdateBooking_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void showUsers()
@@ -80,7 +155,8 @@ namespace PolyBook
                     {
                         MessageBox.Show("Не существует пользователя с таким email", "Ошибка", MessageBoxButtons.OK);
                     }
-                    else {
+                    else
+                    {
                         cmd.ExecuteNonQuery();
                         showUsers();
                         textBoxEmailUsers.Clear();
@@ -104,10 +180,10 @@ namespace PolyBook
                 if (textBoxEmailUsers.Text != "")
                 {
                     string str = textBoxEmailUsers.Text;
-                    str = "select id from users where email = '" + textBoxEmailUsers.Text +"'";
+                    str = "select id from users where email = '" + textBoxEmailUsers.Text + "'";
 
                     MySqlCommand cmd = new MySqlCommand(str, cn);
-                        
+
                     textBoxEmailUsers.Clear();
                     int id = 0;
 
@@ -130,8 +206,8 @@ namespace PolyBook
                     }
 
                     textBoxEmailUsers.Clear();
-                 }
-                
+                }
+
                 else
                 {
                     MessageBox.Show("Введите email, который хотите изменить", "Ошибка", MessageBoxButtons.OK);

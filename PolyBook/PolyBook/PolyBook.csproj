@@ -75,6 +75,12 @@
     <Compile Include="UpdateUser.Designer.cs">
       <DependentUpon>UpdateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateUserAdm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateUserAdm.Designer.cs">
+      <DependentUpon>UpdateUserAdm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateUser.resx">
       <DependentUpon>UpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateUserAdm.resx">
+      <DependentUpon>UpdateUserAdm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserPage.resx">
       <DependentUpon>UserPage.cs</DependentUpon>
