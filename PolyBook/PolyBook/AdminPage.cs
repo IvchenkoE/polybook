@@ -10,18 +10,18 @@ using System.Windows.Forms;
 
 namespace PolyBook
 {
-    public partial class Form1 : Form
+    public partial class AdminPage : Form
     {
         private String strConn;
         private string server;
         private string database;
         private string uid;
         private string password;
+        private int Uid;
 
-        public Form1()
+        public AdminPage(int id)
         {
             InitializeComponent();
-
             server = "localhost";
             database = "database";
             uid = "root";
@@ -29,29 +29,19 @@ namespace PolyBook
             strConn = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             cn.ConnectionString = strConn;
+            Uid = id;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void AdminPage_Load(object sender, EventArgs e)
         {
             try
             {
                 cn.Open();
-                MessageBox.Show("Connected");
             }
             catch (Exception)
             {
                 MessageBox.Show("Connection failed!!", "Connection", MessageBoxButtons.OK);
             }
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
