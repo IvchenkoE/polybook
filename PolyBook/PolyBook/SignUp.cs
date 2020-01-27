@@ -68,9 +68,17 @@ namespace PolyBook
 
             try
             {
-                cmd.ExecuteNonQuery();
+                var result = cmd.ExecuteReader();
+                while (result.Read())
+                {
+                    if (Convert.ToInt32(result["id_"].ToString()) == 0)
+                    {
+                        MessageBox.Show("Пользователь с данным почтовым адресом уже существует", "Ошибка в данных", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка ввода данных!", "Ошибка регистрации", MessageBoxButtons.OK);
             }

@@ -46,6 +46,7 @@
             this.textBoxRoomNum = new System.Windows.Forms.TextBox();
             this.textBoxTimeEnd = new System.Windows.Forms.TextBox();
             this.textBoxTimeStart = new System.Windows.Forms.TextBox();
+            this.textBoxDateBooking = new System.Windows.Forms.TextBox();
             this.comboBoxRoom = new System.Windows.Forms.ComboBox();
             this.checkBoxAllDate = new System.Windows.Forms.CheckBox();
             this.dateTimePickerBooking = new System.Windows.Forms.DateTimePicker();
@@ -65,20 +66,21 @@
             this.button6 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewRooms = new System.Windows.Forms.DataGridView();
             this.dataSetUsers = new System.Data.DataSet();
             this.cn = new MySql.Data.MySqlClient.MySqlConnection();
             this.dataSetBooking = new System.Data.DataSet();
-            this.dateTimePickerUpdateBooking = new System.Windows.Forms.DateTimePicker();
+            this.dataSetRooms = new System.Data.DataSet();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooking)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRooms)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBooking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetRooms)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -96,7 +98,6 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.MintCream;
-            this.tabPage1.Controls.Add(this.dateTimePickerUpdateBooking);
             this.tabPage1.Controls.Add(this.buttonDeleteBooking);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.label11);
@@ -112,6 +113,7 @@
             this.tabPage1.Controls.Add(this.textBoxRoomNum);
             this.tabPage1.Controls.Add(this.textBoxTimeEnd);
             this.tabPage1.Controls.Add(this.textBoxTimeStart);
+            this.tabPage1.Controls.Add(this.textBoxDateBooking);
             this.tabPage1.Controls.Add(this.comboBoxRoom);
             this.tabPage1.Controls.Add(this.checkBoxAllDate);
             this.tabPage1.Controls.Add(this.dateTimePickerBooking);
@@ -132,7 +134,6 @@
             this.buttonDeleteBooking.TabIndex = 21;
             this.buttonDeleteBooking.Text = "Удалить бронирование";
             this.buttonDeleteBooking.UseVisualStyleBackColor = true;
-            this.buttonDeleteBooking.Click += new System.EventHandler(this.buttonDeleteBooking_Click);
             // 
             // label12
             // 
@@ -204,7 +205,6 @@
             this.comboBoxTech.Name = "comboBoxTech";
             this.comboBoxTech.Size = new System.Drawing.Size(222, 23);
             this.comboBoxTech.TabIndex = 13;
-            this.comboBoxTech.SelectedIndexChanged += new System.EventHandler(this.comboBoxTech_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -225,7 +225,6 @@
             this.checkBoxAllRooms.TabIndex = 11;
             this.checkBoxAllRooms.Text = "Все аудитории";
             this.checkBoxAllRooms.UseVisualStyleBackColor = true;
-            this.checkBoxAllRooms.CheckedChanged += new System.EventHandler(this.checkBoxAllRooms_CheckedChanged);
             // 
             // buttonUpdateBooking
             // 
@@ -259,6 +258,13 @@
             this.textBoxTimeStart.Size = new System.Drawing.Size(117, 24);
             this.textBoxTimeStart.TabIndex = 6;
             // 
+            // textBoxDateBooking
+            // 
+            this.textBoxDateBooking.Location = new System.Drawing.Point(51, 327);
+            this.textBoxDateBooking.Name = "textBoxDateBooking";
+            this.textBoxDateBooking.Size = new System.Drawing.Size(117, 24);
+            this.textBoxDateBooking.TabIndex = 5;
+            // 
             // comboBoxRoom
             // 
             this.comboBoxRoom.FormattingEnabled = true;
@@ -277,7 +283,6 @@
             this.checkBoxAllDate.TabIndex = 2;
             this.checkBoxAllDate.Text = "Все Даты";
             this.checkBoxAllDate.UseVisualStyleBackColor = true;
-            this.checkBoxAllDate.CheckedChanged += new System.EventHandler(this.checkBoxAllDate_CheckedChanged);
             // 
             // dateTimePickerBooking
             // 
@@ -333,6 +338,7 @@
             this.buttonDeleteUser.TabIndex = 5;
             this.buttonDeleteUser.Text = "Удалить пользователя";
             this.buttonDeleteUser.UseVisualStyleBackColor = true;
+            this.buttonDeleteUser.Click += new System.EventHandler(this.buttonDeleteUser_Click);
             // 
             // buttonUpdateUser
             // 
@@ -343,6 +349,7 @@
             this.buttonUpdateUser.TabIndex = 4;
             this.buttonUpdateUser.Text = "Редактировать пользователя";
             this.buttonUpdateUser.UseVisualStyleBackColor = true;
+            this.buttonUpdateUser.Click += new System.EventHandler(this.buttonUpdateUser_Click);
             // 
             // buttonAddUser
             // 
@@ -353,6 +360,7 @@
             this.buttonAddUser.TabIndex = 3;
             this.buttonAddUser.Text = "Добавить пользователя";
             this.buttonAddUser.UseVisualStyleBackColor = true;
+            this.buttonAddUser.Click += new System.EventHandler(this.buttonAddUser_Click);
             // 
             // label1
             // 
@@ -372,6 +380,7 @@
             // 
             // dataGridViewUsers
             // 
+            this.dataGridViewUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewUsers.BackgroundColor = System.Drawing.Color.MintCream;
             this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUsers.Location = new System.Drawing.Point(19, 53);
@@ -388,7 +397,7 @@
             this.tabPage3.Controls.Add(this.button6);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.textBox2);
-            this.tabPage3.Controls.Add(this.dataGridView2);
+            this.tabPage3.Controls.Add(this.dataGridViewRooms);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(843, 423);
@@ -401,9 +410,9 @@
             this.label5.Font = new System.Drawing.Font("Calibri Light", 12F);
             this.label5.Location = new System.Drawing.Point(17, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 19);
+            this.label5.Size = new System.Drawing.Size(113, 19);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Все Пользователи:";
+            this.label5.Text = "Все аудитории:";
             // 
             // button4
             // 
@@ -412,7 +421,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(200, 45);
             this.button4.TabIndex = 12;
-            this.button4.Text = "Удалить пользователя";
+            this.button4.Text = "Удалить аудиторию";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button5
@@ -422,7 +431,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(200, 45);
             this.button5.TabIndex = 11;
-            this.button5.Text = "Редактировать пользователя";
+            this.button5.Text = "Редактировать аудиторию";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // button6
@@ -432,17 +441,18 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(200, 45);
             this.button6.TabIndex = 10;
-            this.button6.Text = "Добавить пользователя";
+            this.button6.Text = "Добавить аудиторию";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(18, 259);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(335, 17);
+            this.label6.Size = new System.Drawing.Size(164, 17);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Укажите почту для дальнейшей работы с пользователем";
+            this.label6.Text = "Введите номер аудитории:";
             // 
             // textBox2
             // 
@@ -451,14 +461,15 @@
             this.textBox2.Size = new System.Drawing.Size(332, 24);
             this.textBox2.TabIndex = 8;
             // 
-            // dataGridView2
+            // dataGridViewRooms
             // 
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.MintCream;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(21, 50);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(672, 197);
-            this.dataGridView2.TabIndex = 7;
+            this.dataGridViewRooms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewRooms.BackgroundColor = System.Drawing.Color.MintCream;
+            this.dataGridViewRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRooms.Location = new System.Drawing.Point(21, 50);
+            this.dataGridViewRooms.Name = "dataGridViewRooms";
+            this.dataGridViewRooms.Size = new System.Drawing.Size(672, 197);
+            this.dataGridViewRooms.TabIndex = 7;
             // 
             // dataSetUsers
             // 
@@ -468,12 +479,9 @@
             // 
             this.dataSetBooking.DataSetName = "NewDataSet";
             // 
-            // dateTimePickerUpdateBooking
+            // dataSetRooms
             // 
-            this.dateTimePickerUpdateBooking.Location = new System.Drawing.Point(51, 327);
-            this.dateTimePickerUpdateBooking.Name = "dateTimePickerUpdateBooking";
-            this.dateTimePickerUpdateBooking.Size = new System.Drawing.Size(147, 24);
-            this.dateTimePickerUpdateBooking.TabIndex = 22;
+            this.dataSetRooms.DataSetName = "NewDataSet";
             // 
             // AdminPage
             // 
@@ -496,18 +504,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRooms)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBooking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetRooms)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dataGridViewUsers;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Data.DataSet dataSetUsers;
@@ -523,7 +529,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridViewRooms;
         private MySql.Data.MySqlClient.MySqlConnection cn;
         private System.Windows.Forms.Button buttonDeleteBooking;
         private System.Windows.Forms.Label label12;
@@ -540,11 +546,14 @@
         private System.Windows.Forms.TextBox textBoxRoomNum;
         private System.Windows.Forms.TextBox textBoxTimeEnd;
         private System.Windows.Forms.TextBox textBoxTimeStart;
+        private System.Windows.Forms.TextBox textBoxDateBooking;
         private System.Windows.Forms.ComboBox comboBoxRoom;
         private System.Windows.Forms.CheckBox checkBoxAllDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerBooking;
         private System.Windows.Forms.DataGridView dataGridViewBooking;
         private System.Data.DataSet dataSetBooking;
-        private System.Windows.Forms.DateTimePicker dateTimePickerUpdateBooking;
+        protected internal System.Windows.Forms.TabControl tabControl1;
+        internal System.Windows.Forms.TabPage tabPage2;
+        private System.Data.DataSet dataSetRooms;
     }
 }

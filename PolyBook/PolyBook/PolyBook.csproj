@@ -51,6 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAnyUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAnyUser.Designer.cs">
+      <DependentUpon>AddAnyUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRoom.Designer.cs">
+      <DependentUpon>AddRoom.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,12 +80,6 @@
     </Compile>
     <Compile Include="SignUp.Designer.cs">
       <DependentUpon>SignUp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UpdateBooking.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UpdateBooking.Designer.cs">
-      <DependentUpon>UpdateBooking.cs</DependentUpon>
     </Compile>
     <Compile Include="UpdateUser.cs">
       <SubType>Form</SubType>
@@ -96,6 +102,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="addAnyUser.resx">
+      <DependentUpon>AddAnyUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddRoom.resx">
+      <DependentUpon>AddRoom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminPage.resx">
       <DependentUpon>AdminPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,9 +116,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UpdateBooking.resx">
-      <DependentUpon>UpdateBooking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateUser.resx">
       <DependentUpon>UpdateUser.cs</DependentUpon>
