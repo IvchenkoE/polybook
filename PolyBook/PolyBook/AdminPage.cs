@@ -27,7 +27,7 @@ namespace PolyBook
             server = "localhost";
             database = "database";
             uid = "root";
-            password = "root";
+            password = "йцукен";
             strConn = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             cn.ConnectionString = strConn;
@@ -53,35 +53,16 @@ namespace PolyBook
 
         private void fillRooms()
         {
+            dataSetRooms.Clear();
             MySqlCommand cmd = new MySqlCommand("select catalog.id as 'Номер аудитории', catalog.capacity as 'Вместимость'," +
                 " roomtype.type as 'Тип', catalog.isTechEquip as 'Тех.оборудование' FROM database.catalog" +
                 " inner join roomtype on roomtype.id = catalog.roomTypeId;", cn);
             cmd.ExecuteNonQuery();
 
             MySqlDataAdapter dAdapter = new MySqlDataAdapter();
+
             dAdapter.SelectCommand = cmd;
             dAdapter.Fill(dataSetRooms);
-            DataColumn col = dataSetRooms.Tables[0].Columns.Add("№");
-            col.SetOrdinal(0);
-            dataSetRooms.Tables[0].Columns.Add("Техническое оборудование");
-            foreach (DataRow row in dataSetRooms.Tables[0].Rows)
-            {
-                if (Convert.ToInt32(row[4].ToString()) == 0)
-                {
-                    row[5] = "Нет";
-                }
-                else
-                {
-                    row[5] = "Есть";
-                }
-            }
-            dataSetRooms.Tables[0].Columns.RemoveAt(4);
-            int i = 1;
-            foreach (DataRow row in dataSetRooms.Tables[0].Rows)
-            {
-                row[0] = i;
-                i++;
-            }
             dataGridViewRooms.DataSource = dataSetRooms.Tables[0];
         }
 
@@ -270,5 +251,57 @@ namespace PolyBook
             this.Close();
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBoxNumRoom.Text != "")
+                {
+
+                    MySqlCommand cmd = new MySqlCommand("call deleteRoom(@id);", cn);
+
+                    MySqlParameter id = new MySqlParameter();
+                    id = cmd.Parameters.Add("@id", MySqlDbType.Int32);
+                    id.Direction = ParameterDirection.Input;
+                    id.Value = Convert.ToInt32(textBoxNumRoom.Text);
+
+                    int rows = cmd.ExecuteNonQuery();
+                    if (rows == 0)
+                    {
+                        MessageBox.Show("Не существует аудитории с введенным номером.", "Ошибка", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Введите номер аудитории, которую вы хотите удалить", "Ошибка", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Данные введены неверно", "Ошибка в данных", MessageBoxButtons.OK);
+            }
+            
+            fillRooms();
+            textBoxNumRoom.Clear();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int rid = Convert.ToInt32(textBoxNumRoom.Text);
+                Form updateRoom = new UpdateRoom(Uid, rid);
+                updateRoom.Show();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Данные введены неверно", "Ошибка в данных", MessageBoxButtons.OK);
+            }
+        }
     }
+    
 }

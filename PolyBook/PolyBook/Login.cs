@@ -28,7 +28,7 @@ namespace PolyBook
             server = "localhost";
             database = "database";
             uid = "root";
-            password = "root";
+            password = "йцукен";
             strConn = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             cn.ConnectionString = strConn;

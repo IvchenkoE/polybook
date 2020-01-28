@@ -138,6 +138,7 @@
             this.tabPage2.Size = new System.Drawing.Size(933, 504);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Бронирование";
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // label23
             // 
@@ -343,6 +344,7 @@
             this.buttonBookingCatalog.TabIndex = 18;
             this.buttonBookingCatalog.Text = "Забронировать";
             this.buttonBookingCatalog.UseVisualStyleBackColor = true;
+            this.buttonBookingCatalog.Click += new System.EventHandler(this.buttonBookingCatalog_Click);
             // 
             // label9
             // 

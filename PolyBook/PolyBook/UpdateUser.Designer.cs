@@ -33,17 +33,17 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxFatherName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxCallNum = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.cn = new MySql.Data.MySqlClient.MySqlConnection();
+            this.textBoxFatherName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxCallNum = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -80,31 +80,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Фамилия";
             // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(181, 185);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.ReadOnly = true;
-            this.textBoxEmail.Size = new System.Drawing.Size(198, 24);
-            this.textBoxEmail.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri Light", 10F);
-            this.label3.Location = new System.Drawing.Point(57, 218);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 17);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Номер телефона";
-            // 
-            // textBoxFatherName
-            // 
-            this.textBoxFatherName.Location = new System.Drawing.Point(181, 155);
-            this.textBoxFatherName.Name = "textBoxFatherName";
-            this.textBoxFatherName.Size = new System.Drawing.Size(198, 24);
-            this.textBoxFatherName.TabIndex = 5;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -114,41 +89,6 @@
             this.label4.Size = new System.Drawing.Size(60, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "Отчество";
-            // 
-            // textBoxPassword
-            // 
-            this.textBoxPassword.Location = new System.Drawing.Point(181, 263);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(198, 24);
-            this.textBoxPassword.TabIndex = 11;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri Light", 10F);
-            this.label5.Location = new System.Drawing.Point(57, 266);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 17);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Пароль";
-            // 
-            // textBoxCallNum
-            // 
-            this.textBoxCallNum.Location = new System.Drawing.Point(181, 215);
-            this.textBoxCallNum.Name = "textBoxCallNum";
-            this.textBoxCallNum.Size = new System.Drawing.Size(198, 24);
-            this.textBoxCallNum.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri Light", 10F);
-            this.label6.Location = new System.Drawing.Point(57, 188);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 17);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "email";
             // 
             // label7
             // 
@@ -170,6 +110,66 @@
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // textBoxFatherName
+            // 
+            this.textBoxFatherName.Location = new System.Drawing.Point(181, 155);
+            this.textBoxFatherName.Name = "textBoxFatherName";
+            this.textBoxFatherName.Size = new System.Drawing.Size(198, 24);
+            this.textBoxFatherName.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri Light", 10F);
+            this.label3.Location = new System.Drawing.Point(57, 218);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(105, 17);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Номер телефона";
+            // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Location = new System.Drawing.Point(181, 185);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.ReadOnly = true;
+            this.textBoxEmail.Size = new System.Drawing.Size(198, 24);
+            this.textBoxEmail.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri Light", 10F);
+            this.label6.Location = new System.Drawing.Point(57, 188);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(39, 17);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "email";
+            // 
+            // textBoxCallNum
+            // 
+            this.textBoxCallNum.Location = new System.Drawing.Point(181, 215);
+            this.textBoxCallNum.Name = "textBoxCallNum";
+            this.textBoxCallNum.Size = new System.Drawing.Size(198, 24);
+            this.textBoxCallNum.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri Light", 10F);
+            this.label5.Location = new System.Drawing.Point(57, 266);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 17);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Пароль";
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Location = new System.Drawing.Point(181, 263);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(198, 24);
+            this.textBoxPassword.TabIndex = 11;
             // 
             // UpdateUser
             // 
@@ -208,16 +208,16 @@
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxFatherName;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxCallNum;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buttonSave;
         private MySql.Data.MySqlClient.MySqlConnection cn;
+        private System.Windows.Forms.TextBox textBoxFatherName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxEmail;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxCallNum;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxPassword;
     }
 }
