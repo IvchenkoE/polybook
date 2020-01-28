@@ -65,7 +65,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxNumRoom = new System.Windows.Forms.TextBox();
             this.dataGridViewRooms = new System.Windows.Forms.DataGridView();
             this.dataSetUsers = new System.Data.DataSet();
             this.cn = new MySql.Data.MySqlClient.MySqlConnection();
@@ -299,6 +299,7 @@
             this.dataGridViewBooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBooking.Location = new System.Drawing.Point(20, 131);
             this.dataGridViewBooking.Name = "dataGridViewBooking";
+            this.dataGridViewBooking.ReadOnly = true;
             this.dataGridViewBooking.Size = new System.Drawing.Size(801, 173);
             this.dataGridViewBooking.TabIndex = 0;
             // 
@@ -332,7 +333,7 @@
             // buttonDeleteUser
             // 
             this.buttonDeleteUser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonDeleteUser.Location = new System.Drawing.Point(255, 312);
+            this.buttonDeleteUser.Location = new System.Drawing.Point(316, 355);
             this.buttonDeleteUser.Name = "buttonDeleteUser";
             this.buttonDeleteUser.Size = new System.Drawing.Size(200, 45);
             this.buttonDeleteUser.TabIndex = 5;
@@ -343,7 +344,7 @@
             // buttonUpdateUser
             // 
             this.buttonUpdateUser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonUpdateUser.Location = new System.Drawing.Point(19, 312);
+            this.buttonUpdateUser.Location = new System.Drawing.Point(80, 355);
             this.buttonUpdateUser.Name = "buttonUpdateUser";
             this.buttonUpdateUser.Size = new System.Drawing.Size(200, 45);
             this.buttonUpdateUser.TabIndex = 4;
@@ -354,7 +355,7 @@
             // buttonAddUser
             // 
             this.buttonAddUser.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonAddUser.Location = new System.Drawing.Point(491, 312);
+            this.buttonAddUser.Location = new System.Drawing.Point(552, 355);
             this.buttonAddUser.Name = "buttonAddUser";
             this.buttonAddUser.Size = new System.Drawing.Size(200, 45);
             this.buttonAddUser.TabIndex = 3;
@@ -365,7 +366,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 262);
+            this.label1.Location = new System.Drawing.Point(16, 295);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(335, 17);
             this.label1.TabIndex = 2;
@@ -373,7 +374,7 @@
             // 
             // textBoxEmailUsers
             // 
-            this.textBoxEmailUsers.Location = new System.Drawing.Point(19, 282);
+            this.textBoxEmailUsers.Location = new System.Drawing.Point(19, 315);
             this.textBoxEmailUsers.Name = "textBoxEmailUsers";
             this.textBoxEmailUsers.Size = new System.Drawing.Size(332, 24);
             this.textBoxEmailUsers.TabIndex = 1;
@@ -385,7 +386,8 @@
             this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewUsers.Location = new System.Drawing.Point(19, 53);
             this.dataGridViewUsers.Name = "dataGridViewUsers";
-            this.dataGridViewUsers.Size = new System.Drawing.Size(672, 197);
+            this.dataGridViewUsers.ReadOnly = true;
+            this.dataGridViewUsers.Size = new System.Drawing.Size(799, 230);
             this.dataGridViewUsers.TabIndex = 0;
             // 
             // tabPage3
@@ -396,7 +398,7 @@
             this.tabPage3.Controls.Add(this.button5);
             this.tabPage3.Controls.Add(this.button6);
             this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.textBox2);
+            this.tabPage3.Controls.Add(this.textBoxNumRoom);
             this.tabPage3.Controls.Add(this.dataGridViewRooms);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
@@ -416,28 +418,32 @@
             // 
             // button4
             // 
+            this.button4.AccessibleDescription = "button4_Click";
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(257, 309);
+            this.button4.Location = new System.Drawing.Point(313, 357);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(200, 45);
             this.button4.TabIndex = 12;
             this.button4.Text = "Удалить аудиторию";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
+            this.button5.AccessibleDescription = "button5_Click";
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button5.Location = new System.Drawing.Point(21, 309);
+            this.button5.Location = new System.Drawing.Point(77, 357);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(200, 45);
             this.button5.TabIndex = 11;
             this.button5.Text = "Редактировать аудиторию";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button6.Location = new System.Drawing.Point(493, 309);
+            this.button6.Location = new System.Drawing.Point(549, 357);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(200, 45);
             this.button6.TabIndex = 10;
@@ -448,18 +454,18 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 259);
+            this.label6.Location = new System.Drawing.Point(18, 292);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(164, 17);
             this.label6.TabIndex = 9;
             this.label6.Text = "Введите номер аудитории:";
             // 
-            // textBox2
+            // textBoxNumRoom
             // 
-            this.textBox2.Location = new System.Drawing.Point(21, 279);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(332, 24);
-            this.textBox2.TabIndex = 8;
+            this.textBoxNumRoom.Location = new System.Drawing.Point(21, 312);
+            this.textBoxNumRoom.Name = "textBoxNumRoom";
+            this.textBoxNumRoom.Size = new System.Drawing.Size(332, 24);
+            this.textBoxNumRoom.TabIndex = 8;
             // 
             // dataGridViewRooms
             // 
@@ -468,7 +474,8 @@
             this.dataGridViewRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRooms.Location = new System.Drawing.Point(21, 50);
             this.dataGridViewRooms.Name = "dataGridViewRooms";
-            this.dataGridViewRooms.Size = new System.Drawing.Size(672, 197);
+            this.dataGridViewRooms.ReadOnly = true;
+            this.dataGridViewRooms.Size = new System.Drawing.Size(799, 229);
             this.dataGridViewRooms.TabIndex = 7;
             // 
             // dataSetUsers
@@ -528,7 +535,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxNumRoom;
         private System.Windows.Forms.DataGridView dataGridViewRooms;
         private MySql.Data.MySqlClient.MySqlConnection cn;
         private System.Windows.Forms.Button buttonDeleteBooking;
