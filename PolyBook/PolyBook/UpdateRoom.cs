@@ -64,6 +64,9 @@ namespace PolyBook
                 {
                     MessageBox.Show("Данные не были обновлены" + ex, "Редактирование данных", MessageBoxButtons.OK);
                 }
+                Form admPage = new AdminPage(Uid);
+                admPage.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

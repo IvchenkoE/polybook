@@ -57,7 +57,7 @@ namespace PolyBook
             }
             catch (Exception)
             {
-                MessageBox.Show("Неправильно введен email или пароль", "Ошибка входа", MessageBoxButtons.OK);
+                MessageBox.Show("Вы ввели некорректные данные", "Неправильно введен email или пароль", MessageBoxButtons.OK);
                 Uid = -2;
                 textBoxEmail.Clear();
                 textBoxPassword.Clear();
