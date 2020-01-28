@@ -27,7 +27,7 @@ namespace PolyBook
             server = "localhost";
             database = "database";
             uid = "root";
-            password = "root";
+            password = "йцукен";
             strConn = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             cn.ConnectionString = strConn;
@@ -45,7 +45,7 @@ namespace PolyBook
                         "Ошибка в данных.", MessageBoxButtons.OK);
                     return;
                 }
-                MySqlCommand cmd = new MySqlCommand("call updateBook(@id, @roomId, @date, @stTime, @endTime, @purpose);", cn);
+                MySqlCommand cmd = new MySqlCommand("call updateBook1(@id, @roomId, @date, @stTime, @endTime, @purpose);", cn);
 
                 MySqlParameter id = new MySqlParameter();
                 id = cmd.Parameters.Add("@id", MySqlDbType.Int32);
@@ -95,9 +95,9 @@ namespace PolyBook
                 {
                     var result = cmd.ExecuteNonQuery();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Ошибка в формате введенных данных", "Ошибка в данных.", MessageBoxButtons.OK);
+                    MessageBox.Show("Ошибка в формате введенных данных" + ex, "Ошибка в данных.", MessageBoxButtons.OK);
                     return;
                 }
 

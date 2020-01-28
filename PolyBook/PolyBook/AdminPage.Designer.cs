@@ -46,7 +46,6 @@
             this.textBoxRoomNum = new System.Windows.Forms.TextBox();
             this.textBoxTimeEnd = new System.Windows.Forms.TextBox();
             this.textBoxTimeStart = new System.Windows.Forms.TextBox();
-            this.textBoxDateBooking = new System.Windows.Forms.TextBox();
             this.comboBoxRoom = new System.Windows.Forms.ComboBox();
             this.checkBoxAllDate = new System.Windows.Forms.CheckBox();
             this.dateTimePickerBooking = new System.Windows.Forms.DateTimePicker();
@@ -71,6 +70,7 @@
             this.cn = new MySql.Data.MySqlClient.MySqlConnection();
             this.dataSetBooking = new System.Data.DataSet();
             this.dataSetRooms = new System.Data.DataSet();
+            this.dateTimePickerUpdateBooking = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBooking)).BeginInit();
@@ -98,6 +98,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.MintCream;
+            this.tabPage1.Controls.Add(this.dateTimePickerUpdateBooking);
             this.tabPage1.Controls.Add(this.buttonDeleteBooking);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.label11);
@@ -113,7 +114,6 @@
             this.tabPage1.Controls.Add(this.textBoxRoomNum);
             this.tabPage1.Controls.Add(this.textBoxTimeEnd);
             this.tabPage1.Controls.Add(this.textBoxTimeStart);
-            this.tabPage1.Controls.Add(this.textBoxDateBooking);
             this.tabPage1.Controls.Add(this.comboBoxRoom);
             this.tabPage1.Controls.Add(this.checkBoxAllDate);
             this.tabPage1.Controls.Add(this.dateTimePickerBooking);
@@ -134,6 +134,7 @@
             this.buttonDeleteBooking.TabIndex = 21;
             this.buttonDeleteBooking.Text = "Удалить бронирование";
             this.buttonDeleteBooking.UseVisualStyleBackColor = true;
+            this.buttonDeleteBooking.Click += new System.EventHandler(this.buttonDeleteBooking_Click);
             // 
             // label12
             // 
@@ -205,6 +206,7 @@
             this.comboBoxTech.Name = "comboBoxTech";
             this.comboBoxTech.Size = new System.Drawing.Size(222, 23);
             this.comboBoxTech.TabIndex = 13;
+            this.comboBoxTech.SelectedIndexChanged += new System.EventHandler(this.comboBoxTech_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -225,6 +227,7 @@
             this.checkBoxAllRooms.TabIndex = 11;
             this.checkBoxAllRooms.Text = "Все аудитории";
             this.checkBoxAllRooms.UseVisualStyleBackColor = true;
+            this.checkBoxAllRooms.CheckedChanged += new System.EventHandler(this.checkBoxAllRooms_CheckedChanged);
             // 
             // buttonUpdateBooking
             // 
@@ -258,13 +261,6 @@
             this.textBoxTimeStart.Size = new System.Drawing.Size(117, 24);
             this.textBoxTimeStart.TabIndex = 6;
             // 
-            // textBoxDateBooking
-            // 
-            this.textBoxDateBooking.Location = new System.Drawing.Point(51, 327);
-            this.textBoxDateBooking.Name = "textBoxDateBooking";
-            this.textBoxDateBooking.Size = new System.Drawing.Size(117, 24);
-            this.textBoxDateBooking.TabIndex = 5;
-            // 
             // comboBoxRoom
             // 
             this.comboBoxRoom.FormattingEnabled = true;
@@ -283,6 +279,7 @@
             this.checkBoxAllDate.TabIndex = 2;
             this.checkBoxAllDate.Text = "Все Даты";
             this.checkBoxAllDate.UseVisualStyleBackColor = true;
+            this.checkBoxAllDate.CheckedChanged += new System.EventHandler(this.checkBoxAllDate_CheckedChanged);
             // 
             // dateTimePickerBooking
             // 
@@ -490,6 +487,13 @@
             // 
             this.dataSetRooms.DataSetName = "NewDataSet";
             // 
+            // dateTimePickerUpdateBooking
+            // 
+            this.dateTimePickerUpdateBooking.Location = new System.Drawing.Point(51, 327);
+            this.dateTimePickerUpdateBooking.Name = "dateTimePickerUpdateBooking";
+            this.dateTimePickerUpdateBooking.Size = new System.Drawing.Size(171, 24);
+            this.dateTimePickerUpdateBooking.TabIndex = 22;
+            // 
             // AdminPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
@@ -553,7 +557,6 @@
         private System.Windows.Forms.TextBox textBoxRoomNum;
         private System.Windows.Forms.TextBox textBoxTimeEnd;
         private System.Windows.Forms.TextBox textBoxTimeStart;
-        private System.Windows.Forms.TextBox textBoxDateBooking;
         private System.Windows.Forms.ComboBox comboBoxRoom;
         private System.Windows.Forms.CheckBox checkBoxAllDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerBooking;
@@ -562,5 +565,6 @@
         protected internal System.Windows.Forms.TabControl tabControl1;
         internal System.Windows.Forms.TabPage tabPage2;
         private System.Data.DataSet dataSetRooms;
+        private System.Windows.Forms.DateTimePicker dateTimePickerUpdateBooking;
     }
 }
